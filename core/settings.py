@@ -1,4 +1,10 @@
+import configparser
 from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+CONFIG = configparser.ConfigParser()
+CONFIG.read('config.ini')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
