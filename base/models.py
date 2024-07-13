@@ -25,7 +25,7 @@ class UserManager(BaseUserManager):
     
 
 class User(AbstractUser):
-    username = None
+    # username = None
     name = models.CharField(max_length=200, null=True, help_text="Введите ваше имя", verbose_name="Имя")
     email = models.EmailField(unique=True, null=True, help_text="Введите ваш email", verbose_name="Email")
     bio = models.TextField(null=True, help_text="Краткая информация о себе", verbose_name="Биография")
