@@ -13,6 +13,8 @@ SECRET_KEY = CONFIG['Django']['SECRET_KEY']
 
 DEBUG = True
 
+AUTH_USER_MODEL = CONFIG['Django']['AUTH_USER_MODEL']
+
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 
 LANGUAGE_CODE = CONFIG['Django']['LANGUAGE_CODE']
@@ -51,6 +53,7 @@ INSTALLED_APPS = [
     'base.apps.BaseConfig',
 
     'rest_framework',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
