@@ -1,0 +1,12 @@
+[Django]
+SECRET_KEY = None
+LANGUAGE_CODE = None
+TIME_ZONE = None
+AUTH_USER_MODEL = None
+
+[PostgreSql]
+PGHOST = None
+PGUSER = None
+PGPASSWORD = None
+PGDATABASE = None
+PGPORT = None
