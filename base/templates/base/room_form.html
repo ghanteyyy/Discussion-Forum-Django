@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+    <link rel="stylesheet" href="{% static 'styles/error-message.css' %}">
     <link rel="stylesheet" href="{% static 'styles/form-center.css' %}">
 
     <main class="create-room layout">
@@ -23,12 +24,13 @@
                 </div>
 
                 <div class="layout__body">
-                    <form class="form" action="" method="POST">
+                    <form id="create_room_form" class="form" action="" method="POST">
                         {% csrf_token %}
 
                         <div class="form__group">
                             <label for="room_topic">Enter a Topic</label>
-                            <input required type="text" value="{{room.topic.name}}" name="topic" list="topic-list" />
+                            <input required id="room_topic" type="text" value="{{room.topic.name}}" name="topic" list="topic-list" />
+
                             <datalist id="topic-list">
                                 <select id="room_topic">
                                     {% for topic in topics %}
@@ -36,16 +38,20 @@
                                     {% endfor %}
                                 </select>
                             </datalist>
+
+                            <p class="error-message room_topic_error"></p>
                         </div>
 
                         <div class="form__group">
-                            <label for="room_name">Room Name</label>
+                            <label for="id_name">Room Name</label>
                             {{form.name}}
+                            <p class="error-message room_name_error"></p>
                         </div>
 
                         <div class="form__group">
-                            <label for="room_description">Room Description</label>
+                            <label for="id_description">Room Description</label>
                             {{form.description}}
+                            <p class="error-message room_description_error"></p>
                         </div>
 
                         <div class="form__action">
@@ -57,4 +63,5 @@
             </div>
         </div>
     </main>
+    <script src="{% static 'js/create_room.js' %}"></script>
 {% endblock content %}
