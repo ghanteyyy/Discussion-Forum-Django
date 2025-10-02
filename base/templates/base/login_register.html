@@ -14,18 +14,24 @@
 						</div>
 					</div>
 					<div class="layout__body">
+						{% if messages %}
+							{% for message in messages %}
+								<p class="error-message" style="display: block;">{{message}}</p>
+							{% endfor %}
+						{% endif %}
 						<h2 class="auth__tagline">Find your study partner</h2>
 
-						<form class="form" action="" method="POST">
+						<form id="login_form" class="form" action="" method="POST">
 							{% csrf_token %}
 							<div class="form__group form__group">
 								<label for="room_name">Email</label>
-								<input id="username" name="email" type="email" placeholder="e.g. dennis_ivy@email.com" />
+								<input id="username" name="email" type="text" placeholder="e.g. dennis_ivy@email.com" />
+								<p class="email-error error-message" style="display: none;"></p>
 							</div>
 							<div class=" form__group">
 								<label for="password">Password</label>
-								<input id="password" name="password" type="password"
-									placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+								<input id="password" name="password" type="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+								<p class="password-error error-message" style="display: none;"></p>
 							</div>
 
 							<button class="btn btn--main" type="submit">
@@ -51,6 +57,7 @@
 					</div>
 				</div>
 			</div>
+			<script src="{% static 'js/login.js' %}"></script>
 
 		{% else %}
 			<div class="container">
@@ -61,18 +68,24 @@
 						</div>
 					</div>
 					<div class="layout__body">
+						{% if messages %}
+							{% for message in messages %}
+								<p class="error-message" style="display: block;">{{message}}</p>
+							{% endfor %}
+						{% endif %}
+
 						<h2 class="auth__tagline">Find your study partner</h2>
 
-						<form class="form" action="" method="POST">
+						<form id="signup_form" class="form" action="" method="POST">
 							{% csrf_token %}
 
 							{% for field in form %}
-							<div class="form__group form__group">
-								<label for="room_name">{{field.label}}</label>
-								{{field}}
-							</div>
+								<div class="form__group form__group">
+									<label for="room_name">{{field.label}}</label>
+									{{field}}
+									<p class="error-message error-{{field.name}}"></p>
+								</div>
 							{% endfor %}
-
 
 							<button class="btn btn--main" type="submit">
 								<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -97,6 +110,8 @@
 					</div>
 				</div>
 			</div>
+
+			<script src="{% static 'js/signup.js' %}"></script>
 		{% endif %}
 	</main>
 {% endblock content %}
