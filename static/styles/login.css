@@ -1,0 +1,13 @@
+.layout > .container{
+    width: 100%;
+    margin: none;
+    max-width:none;
+    align-items: center;
+    justify-content: center;
+}
+
+.layout__box{
+    position: static;
+    transform: none;
+    margin-bottom: 20px;
+}
