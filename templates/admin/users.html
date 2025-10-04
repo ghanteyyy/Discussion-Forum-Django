@@ -1,0 +1,108 @@
+{% extends 'admin/root.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'styles/error-message.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/admin/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/admin/users.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="header">
+        <h2>Users</h2>
+
+        <button class="btn-add"
+            data-name=""
+            data-user_name=""
+            data-email=""
+            data-bio=""
+            data-submit_href="user/add">
+        <i class='bx bx-plus'></i> Add</button>
+    </div>
+
+    <table id="data_table" class="display">
+        <thead>
+            <tr>
+                <th>SN</th>
+                {% for table_head in table_heads %}
+                    <th>{{table_head}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td class="sn">{{forloop.counter}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.bio}}</td>
+                    <td class="action-buttons">
+                        <button type="button" class="btn btn-edit"
+                                data-name="{{ user.name }}"
+                                data-username="{{ user.username }}"
+                                data-email="{{ user.email }}"
+                                data-bio="{{ user.bio }}"
+                                data-submit_href="user/edit">
+                            <i class='bx bx-edit'></i>
+                        </button>
+                        <button type="button" class="btn btn-delete"
+                            data-email="{{ user.email }}"><i class="bx bx-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div id="modal" class="modal is-hidden" aria-hidden="true">
+        <div class="modal__overlay" id="overlay"></div>
+
+        <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <header class="modal__header">
+                <h2 id="modalTitle">User Details</h2>
+                <button class="modal__close" id="closeBtn" aria-label="Close">×</button>
+            </header>
+
+            <form class="modal__content" method="POST" action="#">
+                {% csrf_token %}
+
+                <p class="error-message"></p>
+
+                <div class="field email-field" style="display: none;">
+                    <label for="email">Email <span class="required"> *</span></label>
+                    <input type="email" name="email" id="email">
+                </div>
+
+                <div class="field">
+                    <label for="name">Name <span class="required"> *</span></label>
+                    <input id="name" name="name" type="text"/>
+                </div>
+
+                <div class="field">
+                    <label for="username">Username <span class="required"> *</span></label>
+                    <input id="username" name="username" type="text"/>
+                </div>
+
+                <div class="field">
+                    <label for="bio">BIO <span class="required"> *</span></label>
+                    <input id="bio" name="bio" type="text"/>
+                </div>
+
+                <div class="field">
+                    <label for="password">Password <span class="required password"> *</span></label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <div class="actions">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/admin/modal.js' %}"></script>
+    <script src="{% static 'js/admin/users.js' %}"></script>
+{% endblock %}

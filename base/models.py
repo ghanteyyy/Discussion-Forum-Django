@@ -30,7 +30,6 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     name = models.CharField(max_length=200, null=True, help_text="Enter your name", verbose_name="Name")
-    name = models.CharField(max_length=200, null=True, help_text="Enter your name", verbose_name="Name")
     email = models.EmailField(unique=True, null=True, help_text="Enter your email", verbose_name="Email")
     bio = models.TextField(null=True, help_text="Short information about yourself", verbose_name="Biography")
     avatar = models.ImageField(null=True, default="avatar.svg", help_text="Upload an avatar", verbose_name="Avatar")

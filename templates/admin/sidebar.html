@@ -1,0 +1,19 @@
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'styles/admin/sidebar.css' %}">
+{% endblock %}
+
+<div class="sidebar">
+    <div class="nav-links">
+        <a class="{% if request.resolver_match.url_name == 'admin-home' %}active{% endif %}" href="{% url 'admin-home' %}"><i class="bx bx-user"></i><span>Users</span></a>
+        <a class="{% if request.resolver_match.url_name == 'admin-rooms' %}active{% endif %}" href="{% url 'admin-rooms' %}"><i class="bx bx-briefcase-alt-2"></i><span>Rooms</span></a>
+        <a class="{% if request.resolver_match.url_name == 'admin-topics' %}active{% endif %}" href="{% url 'admin-topics' %}"><i class="bx bx-buildings"></i><span>Topics</span></a>
+        <a class="{% if request.resolver_match.url_name == 'admin-messages' %}active{% endif %}" href="{% url 'admin-messages' %}"><i class="bx bx-layer"></i><span>Messages</span></a>
+        <a class="" href="{% url 'logout' %}"><i class='bx bx-log-out'></i><span>Logout</span></a>
+    </div>
+</div>
+
+{% block js %}
+    <script src="{% static 'js/admin/sidebar.js' %}" defer></script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'admin/root.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'styles/error-message.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/admin/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/admin/users.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="header">
+        <h2>Topics</h2>
+    </div>
+
+    <table id="data_table" class="display">
+        <thead>
+            <tr>
+                <th>SN</th>
+                {% for table_head in table_heads %}
+                    <th>{{table_head}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for topic in topics %}
+                <tr>
+                    <td class="sn">{{forloop.counter}}</td>
+                    <td>{{topic.host}}</td>
+                    <td>{{topic.topic}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/admin/modal.js' %}"></script>
+    <script src="{% static 'js/admin/users.js' %}"></script>
+{% endblock %}

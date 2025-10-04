@@ -1,0 +1,52 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    border: none;
+    background-color: inherit;
+}
+
+.bx-edit {
+    cursor: pointer;
+    color: #334155
+}
+
+.bx-trash {
+    cursor: pointer;
+    color: #dc2626
+}
+
+button {
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    border-color: #bbb;
+}
+
+button.btn-add{
+    display: flex;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    height: fit-content;
+    align-items: center;
+    border-radius: 18px;
+    justify-content: center;
+    background-color: #334155;
+}
+
+button.btn-add:hover{
+    cursor: pointer;
+}
+
+span.required{
+    color: #dc2626;
+}

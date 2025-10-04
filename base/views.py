@@ -25,6 +25,10 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
+
+            if request.user.is_superuser:
+                return redirect('admin-home')
+
             return redirect('home')
 
         else:
