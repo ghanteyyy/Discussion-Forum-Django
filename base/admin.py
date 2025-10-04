@@ -18,7 +18,7 @@ class UserAdmin(BaseUserAdmin):
             'fields': ('email', 'password1', 'password2'),
         }),
     )
-    list_display = ('email', 'name', 'is_staff')
+    list_display = ('id', 'email', 'name', 'is_staff')
     search_fields = ('email', 'name')
     ordering = ('email',)
 
@@ -28,7 +28,7 @@ class TopicAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('name',)}),
     )
-    list_display = ('name',)
+    list_display = ('id', 'name',)
     search_fields = ('name',)
 
 
@@ -38,7 +38,7 @@ class RoomAdmin(admin.ModelAdmin):
         (None, {'fields': ('name', 'host', 'topic', 'description', 'participants')}),
         (_('Dates'), {'fields': ('updated', 'created')}),
     )
-    list_display = ('name', 'host', 'topic', 'updated', 'created')
+    list_display = ('id', 'name', 'host', 'topic', 'updated', 'created')
     search_fields = ('name', 'description')
     list_filter = ('topic', 'host')
     filter_horizontal = ('participants',)
@@ -51,7 +51,7 @@ class MessageAdmin(admin.ModelAdmin):
         (None, {'fields': ('user', 'room', 'body')}),
         (_('Dates'), {'fields': ('updated', 'created')}),
     )
-    list_display = ('user', 'room', 'body', 'updated', 'created')
+    list_display = ('id', 'user', 'room', 'body', 'updated', 'created')
     search_fields = ('user__email', 'body')
     list_filter = ('room', 'user')
     readonly_fields = ('updated', 'created')
