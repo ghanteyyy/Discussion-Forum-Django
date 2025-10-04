@@ -4,12 +4,15 @@ from django.db import models
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
+
         if not email:
             raise ValueError('The Email field must be set')
+
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+
         return user
 
     def create_superuser(self, email, password=None, **extra_fields):
@@ -18,6 +21,7 @@ class UserManager(BaseUserManager):
 
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True.')
+
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
 
@@ -25,7 +29,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
-    # username = None
+    name = models.CharField(max_length=200, null=True, help_text="Enter your name", verbose_name="Name")
     name = models.CharField(max_length=200, null=True, help_text="Enter your name", verbose_name="Name")
     email = models.EmailField(unique=True, null=True, help_text="Enter your email", verbose_name="Email")
     bio = models.TextField(null=True, help_text="Short information about yourself", verbose_name="Biography")
