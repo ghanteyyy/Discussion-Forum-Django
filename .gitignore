@@ -139,6 +139,7 @@ GitHub.sublime-settings
 
 # Config
 config.ini
+.env.local
 
 # Database
 db.sqlite3
